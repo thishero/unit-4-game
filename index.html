@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Crystals</title>
+
+  <link rel = "stylesheet" type = "text/css" href="assets/css/style.css"/>
+  <link rel = "stylesheet" type = "text/css" href="assets/css/reset.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+</head>
+<body>
+
+<h1>CrystalsCollector!</h1>
+
+<div id="descriptionBox">
+    <p>You will be given a random number at the start of the game.</p>
+
+    <p>There are four crystals below. By clicking on a crystal you will add a specific amount of points to your total score.</p>
+
+    <p>You win the game by matching your total score to random number, you lose the game if your total score goes above the random number.</p>
+
+    <p>The value of each crystal is hidden from you until you click on it.</p>
+
+    <p>Each time when the game starts, the game will change the values of each crystal.</p>
+</div>
+
+<div id="cpuNumber"></div>
+
+<div id="tallyBox">
+    <p>Wins: <span id="winTally">0</span></p>
+    <p>Losses: <span id="lossTally">0</span></p>
+</div>
+
+<div class="container">
+    <button id="button-red" value="red"><h2>Red</h2></button>
+    <button id="button-blue" value="blue"><h2>Blue</h2></button>
+    <button id="button-yellow" value="yellow"><h2>Yellow</h2></button>
+    <button id="button-green" value="green"><h2>Green</h2></button>
+</div>
+
+<div id="yourScoreBox">
+    <p>Your total score is: <span id="yourScore"></span></p>
+</div>
+
+<script>
+
+var winsCounter = 0;
+var lossCounter = 0;
+var totalScore = 0;
+var lockGame = false;
+
+$(document).ready(function() {
+    var computerNumber = Math.floor(Math.random() * 101) + 19;
+    $('#cpuNumber').append(computerNumber);
+
+    var red = Math.floor(Math.random()* 11) + 1;
+    $('#button-red').val(red);
+    var blue = Math.floor(Math.random()* 11) + 1;
+    $('#button-blue').val(blue);
+    var green = Math.floor(Math.random()* 11) + 1;
+    $('#button-green').val(green);
+    var yellow = Math.floor(Math.random()* 11) + 1;
+    $('#button-yellow').val(yellow);
+
+$('.container').on('click', 'button', function() {
+        var yourPick = $(this).val();
+        if (yourPick > computerNumber) {
+            lossCounter++;
+            $('#lossTally').text(lossCounter)
+        }
+    })
+
+   $('#winTally').text(winsCounter);
+   $('#lossTally').text(lossCounter);
+});
+
+// var reset = function() {
+//     cpuNumber = Math.floor(Math.random()*101+19);
+//     $('#cpuNumber').text(cpuNumber);
+//     red = Math.floor(Math.random()*11+1);
+//     blue = Math.floor(Math.random()*11+1);
+//     green = Math.floor(Math.random()*11+1);
+//     yellow = Math.floor(Math.random()*11+1);
+//     totalScoreCounter = 0;
+//     $('#yourScoreBox').text(totalScoreCounter);
+//     }
+// });
+
+
+</script>
+<script src="assets/javascript/game.js"></script>
+</body>
+</html>
+
+
+<!-- // function winner() {
+    //     winsCounter++;
+    //     $('#numberWins').text(winsCounter);
+    //     reset();
+    //     }
+       
+    // function loser() {
+    //     lossesCounter++;
+    //     $('#numberLosses').text(lossesCounter);
+    //     reset()
+    //     } -->

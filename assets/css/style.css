@@ -1,0 +1,36 @@
+
+
+
+
+
+
+body {
+    background-color: teal;
+}
+
+h1 {
+background-color: orange;
+color: white;
+padding-top: 20px;
+padding-bottom: 20px;
+width: 250px;
+}
+
+#descriptionBox {
+    background-color: bisque;
+    padding-top: 10px;
+    padding-bottom: 100px;
+    color: green;
+    width: 400px;
+}
+
+#tallyBox {
+    background-color: aqua;
+    width: 75px
+}
+
+#yourScoreBox {
+    background-color: green;
+    width: 200px;
+    color: white;
+}
