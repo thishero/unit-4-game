@@ -1,44 +1,54 @@
-console.log('test')
 
 var winsCounter = 0;
-var lossesCounter = 0;
+var lossCounter = 0;
 var totalScore = 0;
-
-var computerNumber = Math.floor(Math.random()*11);
-$('#cpuNumber').append(computerNumber);
+// var lockGame = false;
 
 $(document).ready(function() {
-   var random = Math.floor(Math.random()*40);
-   $('#cpuNumber').text(random);
-   
-   var red = Math.floor(Math.random()*11+1)
-   var blue = Math.floor(Math.random()*11+1)
-   var green = Math.floor(Math.random()*11+1)
-   var yellow = Math.floor(Math.random()*11+1)
+    var computerNumber = Math.floor(Math.random() * 101) + 19;
+    $('#cpuNumber').append(computerNumber);
+    var red = Math.floor(Math.random()* 11) + 1;
+    $('#red').attr('value', red);
+    var blue = Math.floor(Math.random()* 11) + 1;
+    $('#blue').attr('value', blue);
+    var green = Math.floor(Math.random()* 11) + 1;
+    $('#green').attr('value', green);
+    var yellow = Math.floor(Math.random()* 11) + 1;
+    $('#yellow').attr('value', yellow);
 
-   $('#winTally').text(winsCounter);
-   $('#lossTally').text(lossesCounter);
-   
-function winner() {
-    winsCounter++;
-    $('#numberWins').text(winsCounter);
-    reset();
-    }
-   
-function loser() {
-    lossesCounter++;
-    $('#numberLosses').text(lossesCounter);
-    reset()
-    }
+    // reset the values of the totalScore, computerNumber, and button values
+    var reset = function() {
+        totalScore = 0;
+        computerNumber = Math.floor(Math.random() * 101) + 19;
+        $('#cpuNumber').text("");
+        $('#cpuNumber').append(computerNumber);
+        red = Math.floor(Math.random()* 11) + 1;
+        $('#red').attr('value', red);
+        blue = Math.floor(Math.random()* 11) + 1;
+        $('#blue').attr('value', blue);
+        green = Math.floor(Math.random()* 11) + 1;
+        $('#green').attr('value', green);
+        yellow = Math.floor(Math.random()* 11) + 1;
+        $('#yellow').attr('value', yellow);
+    };
 
-function reset() {
-    random = Math.floor(Math.random()*40);
-    $('#cpuNumber').text(random);
-    num1 = Math.floor(Math.random()*11+1);
-    num2 = Math.floor(Math.random()*11+1);
-    num3 = Math.floor(Math.random()*11+1);
-    num4 = Math.floor(Math.random()*11+1);
-    totalScoreCounter = 0;
-    $('#yourScoreBox').text(totalScoreCounter);
-    }
+    $('.color').on('click', function() {
+        var yourPick = $(this).attr("value");
+        totalScore += parseInt(yourPick);
+        if (totalScore > computerNumber) {
+            lossCounter++;
+            $('#lossTally').text(lossCounter);
+            // Call a reset function here
+            reset();
+        } else if (totalScore === computerNumber) {
+            winsCounter++;
+            $('#winTally').text(winsCounter);
+            // Call a reset function here
+            reset();
+        } else (totalScore < computerNumber)
+            $('#yourScore').text(totalScore);
+    })
 });
+
+            // this was my old incorrect way of adding value to totalScore
+            // totalScore = totalScore + $(this).val();

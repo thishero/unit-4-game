@@ -2,7 +2,11 @@
 
 
 
-
+#cpuNumber {
+    background-color: blueviolet;
+    color: white;
+    font-size: larger;
+}
 
 body {
     background-color: teal;
